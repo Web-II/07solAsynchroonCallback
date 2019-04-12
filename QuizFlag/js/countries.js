@@ -1,0 +1,213 @@
+export const countriesOfEurope = [{
+	"flag": "https://restcountries.eu/data/ala.svg",
+	"name": "Åland Islands",
+	"capital": "Mariehamn"
+}, {
+	"flag": "https://restcountries.eu/data/alb.svg",
+	"name": "Albania",
+	"capital": "Tirana"
+}, {
+	"flag": "https://restcountries.eu/data/and.svg",
+	"name": "Andorra",
+	"capital": "Andorra la Vella"
+}, {
+	"flag": "https://restcountries.eu/data/aut.svg",
+	"name": "Austria",
+	"capital": "Vienna"
+}, {
+	"flag": "https://restcountries.eu/data/blr.svg",
+	"name": "Belarus",
+	"capital": "Minsk"
+}, {
+	"flag": "https://restcountries.eu/data/bel.svg",
+	"name": "Belgium",
+	"capital": "Brussels"
+}, {
+	"flag": "https://restcountries.eu/data/bih.svg",
+	"name": "Bosnia and Herzegovina",
+	"capital": "Sarajevo"
+}, {
+	"flag": "https://restcountries.eu/data/bgr.svg",
+	"name": "Bulgaria",
+	"capital": "Sofia"
+}, {
+	"flag": "https://restcountries.eu/data/hrv.svg",
+	"name": "Croatia",
+	"capital": "Zagreb"
+}, {
+	"flag": "https://restcountries.eu/data/cyp.svg",
+	"name": "Cyprus",
+	"capital": "Nicosia"
+}, {
+	"flag": "https://restcountries.eu/data/cze.svg",
+	"name": "Czech Republic",
+	"capital": "Prague"
+}, {
+	"flag": "https://restcountries.eu/data/dnk.svg",
+	"name": "Denmark",
+	"capital": "Copenhagen"
+}, {
+	"flag": "https://restcountries.eu/data/est.svg",
+	"name": "Estonia",
+	"capital": "Tallinn"
+}, {
+	"flag": "https://restcountries.eu/data/fro.svg",
+	"name": "Faroe Islands",
+	"capital": "Tórshavn"
+}, {
+	"flag": "https://restcountries.eu/data/fin.svg",
+	"name": "Finland",
+	"capital": "Helsinki"
+}, {
+	"flag": "https://restcountries.eu/data/fra.svg",
+	"name": "France",
+	"capital": "Paris"
+}, {
+	"flag": "https://restcountries.eu/data/deu.svg",
+	"name": "Germany",
+	"capital": "Berlin"
+}, {
+	"flag": "https://restcountries.eu/data/gib.svg",
+	"name": "Gibraltar",
+	"capital": "Gibraltar"
+}, {
+	"flag": "https://restcountries.eu/data/grc.svg",
+	"name": "Greece",
+	"capital": "Athens"
+}, {
+	"flag": "https://restcountries.eu/data/ggy.svg",
+	"name": "Guernsey",
+	"capital": "St. Peter Port"
+}, {
+	"flag": "https://restcountries.eu/data/vat.svg",
+	"name": "Holy See",
+	"capital": "Rome"
+}, {
+	"flag": "https://restcountries.eu/data/hun.svg",
+	"name": "Hungary",
+	"capital": "Budapest"
+}, {
+	"flag": "https://restcountries.eu/data/isl.svg",
+	"name": "Iceland",
+	"capital": "Reykjavík"
+}, {
+	"flag": "https://restcountries.eu/data/irl.svg",
+	"name": "Ireland",
+	"capital": "Dublin"
+}, {
+	"flag": "https://restcountries.eu/data/imn.svg",
+	"name": "Isle of Man",
+	"capital": "Douglas"
+}, {
+	"flag": "https://restcountries.eu/data/ita.svg",
+	"name": "Italy",
+	"capital": "Rome"
+}, {
+	"flag": "https://restcountries.eu/data/jey.svg",
+	"name": "Jersey",
+	"capital": "Saint Helier"
+}, {
+	"flag": "https://restcountries.eu/data/lva.svg",
+	"name": "Latvia",
+	"capital": "Riga"
+}, {
+	"flag": "https://restcountries.eu/data/lie.svg",
+	"name": "Liechtenstein",
+	"capital": "Vaduz"
+}, {
+	"flag": "https://restcountries.eu/data/ltu.svg",
+	"name": "Lithuania",
+	"capital": "Vilnius"
+}, {
+	"flag": "https://restcountries.eu/data/lux.svg",
+	"name": "Luxembourg",
+	"capital": "Luxembourg"
+}, {
+	"flag": "https://restcountries.eu/data/mkd.svg",
+	"name": "Macedonia (the former Yugoslav Republic of)",
+	"capital": "Skopje"
+}, {
+	"flag": "https://restcountries.eu/data/mlt.svg",
+	"name": "Malta",
+	"capital": "Valletta"
+}, {
+	"flag": "https://restcountries.eu/data/mda.svg",
+	"name": "Moldova (Republic of)",
+	"capital": "Chișinău"
+}, {
+	"flag": "https://restcountries.eu/data/mco.svg",
+	"name": "Monaco",
+	"capital": "Monaco"
+}, {
+	"flag": "https://restcountries.eu/data/mne.svg",
+	"name": "Montenegro",
+	"capital": "Podgorica"
+}, {
+	"flag": "https://restcountries.eu/data/nld.svg",
+	"name": "Netherlands",
+	"capital": "Amsterdam"
+}, {
+	"flag": "https://restcountries.eu/data/nor.svg",
+	"name": "Norway",
+	"capital": "Oslo"
+}, {
+	"flag": "https://restcountries.eu/data/pol.svg",
+	"name": "Poland",
+	"capital": "Warsaw"
+}, {
+	"flag": "https://restcountries.eu/data/prt.svg",
+	"name": "Portugal",
+	"capital": "Lisbon"
+}, {
+	"flag": "https://restcountries.eu/data/kos.svg",
+	"name": "Republic of Kosovo",
+	"capital": "Pristina"
+}, {
+	"flag": "https://restcountries.eu/data/rou.svg",
+	"name": "Romania",
+	"capital": "Bucharest"
+}, {
+	"flag": "https://restcountries.eu/data/rus.svg",
+	"name": "Russian Federation",
+	"capital": "Moscow"
+}, {
+	"flag": "https://restcountries.eu/data/smr.svg",
+	"name": "San Marino",
+	"capital": "City of San Marino"
+}, {
+	"flag": "https://restcountries.eu/data/srb.svg",
+	"name": "Serbia",
+	"capital": "Belgrade"
+}, {
+	"flag": "https://restcountries.eu/data/svk.svg",
+	"name": "Slovakia",
+	"capital": "Bratislava"
+}, {
+	"flag": "https://restcountries.eu/data/svn.svg",
+	"name": "Slovenia",
+	"capital": "Ljubljana"
+}, {
+	"flag": "https://restcountries.eu/data/esp.svg",
+	"name": "Spain",
+	"capital": "Madrid"
+}, {
+	"flag": "https://restcountries.eu/data/sjm.svg",
+	"name": "Svalbard and Jan Mayen",
+	"capital": "Longyearbyen"
+}, {
+	"flag": "https://restcountries.eu/data/swe.svg",
+	"name": "Sweden",
+	"capital": "Stockholm"
+}, {
+	"flag": "https://restcountries.eu/data/che.svg",
+	"name": "Switzerland",
+	"capital": "Bern"
+}, {
+	"flag": "https://restcountries.eu/data/ukr.svg",
+	"name": "Ukraine",
+	"capital": "Kiev"
+}, {
+	"flag": "https://restcountries.eu/data/gbr.svg",
+	"name": "United Kingdom of Great Britain and Northern Ireland",
+	"capital": "London"
+}]
