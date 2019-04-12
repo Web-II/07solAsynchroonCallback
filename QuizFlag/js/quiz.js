@@ -98,21 +98,26 @@ class QuizApp {
 		document.getElementById("answers").innerHTML = '';
 		[...this.answers].forEach(([key, value]) => {
 			const tr = document.createElement("tr");
-			tr.style.backgroundColor =
-				key.countryName.toLowerCase() === value.toLowerCase() ? "green" : "red";
 			const td1 = document.createElement("td");
 			const img = document.createElement("img");
 			img.src = key.flag;
-			img.width = "35px";
-			img.height = "25px";
+			img.width = "35";
+			img.height = "25";
 			td1.appendChild(img);
 			const td2 = document.createElement("td");
 			td2.appendChild(document.createTextNode(key.countryName));
 			const td3 = document.createElement("td");
 			td3.appendChild(document.createTextNode(value));
+			const td4 = document.createElement("td");
+			const icon = document.createElement("img");
+			icon.src = key.countryName.toLowerCase() === value.toLowerCase() ? "images/correct.png" : "images/wrong.png";
+			icon.width = "25";
+			icon.height = "25";
+			td4.appendChild(icon);
 			tr.appendChild(td1);
 			tr.appendChild(td2);
 			tr.appendChild(td3);
+			tr.appendChild(td4);
 			document.getElementById("answers").appendChild(tr);
 		});
 	}
