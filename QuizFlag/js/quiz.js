@@ -2,9 +2,6 @@
 	countriesOfEurope
 } from './countries.js';
 
-function shuffle() {
-
-}
 
 class Country {
 	constructor(countryName, capital, flag) {
