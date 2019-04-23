@@ -73,7 +73,7 @@ class Game {
     }
 }
 
-class DPDIComponent {
+class DPDIApp {
     constructor(canvas, storage) {
         this._canvas = canvas;
         this._ctx = this._canvas.getContext("2d");
@@ -158,7 +158,7 @@ const convertSeconds = function(seconds){
 }
 const init = function () {
     const canvas = document.getElementById("gameCanvas");
-    const DPDI = new DPDIComponent(canvas, window.localStorage);
+    const DPDI = new DPDIApp(canvas, window.localStorage);
     document.getElementById("gameCanvas").onclick = (event) => {
         // xco is de xcoördinaat van de muisklik op het canvas
         const xco = event.pageX - DPDI.canvas.offsetLeft;
