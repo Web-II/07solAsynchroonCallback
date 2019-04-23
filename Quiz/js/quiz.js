@@ -34,6 +34,7 @@ class QuizApp {
 		this.countriesArray = countriesOfEurope.map(c => new Country(c.name, c.capital, c.flag));
 		this.questionsQuiz = new Set();
 		this.answers = new Map();
+		this.createQuestions();
 	}
 	get countriesArray() {
 		return this._countriesArray;
@@ -129,5 +130,4 @@ class QuizApp {
 
 window.onload = () => {
 	const app = new QuizApp();
-	app.createQuestions();
 };
