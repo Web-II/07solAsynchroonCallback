@@ -1,4 +1,4 @@
-const alfabetUpper = 'ABCDEFGHIJKLMOPQRSTUVWXYZ'.split('');
+const alfabetUpper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const alfabetLower = 'abcdefghijklmnopqrstuvwxyz'.split('');
 const caesar = function(event){
   document.getElementById('encryption').innerText = event.target.value.split('')
