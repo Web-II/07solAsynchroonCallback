@@ -47,23 +47,10 @@ class Quiz {
   addAnswer(question, answer) {
     this.answers.set(question, answer);
   }
-  isAnsweredCorrectly(question) {
-    return (
-      question.capital.toLowerCase() ===
-      this.answers.get(question).toLowerCase()
-    );
-  }
 
-  getAnswerSet(question) {
-    const capitalSet = new Set();
-    capitalSet.add(question.capital);
-    while (capitalSet.size < 11) {
-      capitalSet.add(
-        this.countries[Math.ceil(Math.random() * this.countries.length - 1)]
-          .capital
-      );
-    }
-    return capitalSet;
+  getRandomCountryCapital() {
+    return this.countries[Math.ceil(Math.random() * this.countries.length - 1)]
+      .capital;
   }
 }
 
@@ -122,7 +109,7 @@ class QuizApp {
     document.getElementById('answersList').classList.add('hide');
     new Promise((resolve) => {
       setTimeout(() => {
-        this.createSelectList(this._quiz.getAnswerSet(question));
+        this.createSelectList(question.capital);
         resolve();
       }, 2000);
     })
@@ -165,9 +152,10 @@ class QuizApp {
       td3.appendChild(document.createTextNode(value));
       const td4 = document.createElement('td');
       const icon = document.createElement('img');
-      icon.src = this._quiz.isAnsweredCorrectly(key)
-        ? 'images/correct.png'
-        : 'images/wrong.png';
+      icon.src =
+        key.capital.toLowerCase() === value.toLowerCase()
+          ? 'images/correct.png'
+          : 'images/wrong.png';
       icon.width = '25';
       icon.height = '25';
       td4.appendChild(icon);
@@ -178,9 +166,14 @@ class QuizApp {
       document.getElementById('answers').appendChild(tr);
     });
   }
-  createSelectList(capitalSet) {
+  createSelectList(capital) {
     document.getElementById('capital').innerHTML = '';
+    const capitalSet = new Set();
     capitalSet.add('-- Make your choice --');
+    capitalSet.add(capital);
+    while (capitalSet.size < 11) {
+      capitalSet.add(this._quiz.getRandomCountryCapital());
+    }
     [...capitalSet].sort().forEach((value) => {
       const opt = document.createElement('option');
       opt.appendChild(document.createTextNode(value));
