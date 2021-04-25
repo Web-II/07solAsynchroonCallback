@@ -3,4 +3,13 @@
     height: 45px;
     border: 1px black solid;
 }
-
+.hide{
+    display:none;
+}
+#message{
+    color: red;
+    font-weight: bold;
+}
+img{
+    margin-left: 1rem;
+}

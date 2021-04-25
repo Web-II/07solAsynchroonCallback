@@ -1,12 +1,11 @@
-const alfabetUpper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-const alfabetLower = 'abcdefghijklmnopqrstuvwxyz'.split('');
-const caesar = function(event){
-  document.getElementById('encryption').innerText = event.target.value.split('')
+const alfabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const caesar = function(){
+  document.getElementById('encryption').innerText = this.value.split('')
     .map(value => 
-      alfabetUpper.includes(value) 
-        ? alfabetUpper[(alfabetUpper.indexOf(value) + 3) % alfabetUpper.length]
-        : alfabetLower.includes(value) 
-          ? alfabetLower[(alfabetLower.indexOf(value) + 3) % alfabetLower.length]
+      alfabet.includes(value) 
+        ? alfabet[(alfabet.indexOf(value) + 3) % alfabet.length]
+        : alfabet.includes(value.toUpperCase()) 
+          ? alfabet[(alfabet.indexOf(value.toUpperCase()) + 3) % alfabet.length].toLowerCase()
           : value)
     .join('');
 }
