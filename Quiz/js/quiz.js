@@ -1,4 +1,4 @@
-﻿import { countriesOfEurope } from "./countries.js";
+﻿import { countriesOfEurope } from './countries.js';
 
 class Country {
   constructor(countryName, capital, flag) {
@@ -47,19 +47,32 @@ class Quiz {
   addAnswer(question, answer) {
     this.answers.set(question, answer);
   }
-  getRandomCountryCapital() {
-    return this.countries[Math.ceil(Math.random() * this.countries.length - 1)]
-      .capital;
+  isAnsweredCorrectly(question) {
+    return (
+      question.capital.toLowerCase() ===
+      this.answers.get(question).toLowerCase()
+    );
+  }
+
+  getAnswerSet(question) {
+    const capitalSet = new Set();
+    capitalSet.add(question.capital);
+    while (capitalSet.size < 11) {
+      capitalSet.add(
+        this.countries[Math.ceil(Math.random() * this.countries.length - 1)]
+          .capital
+      );
+    }
+    return capitalSet;
   }
 }
 
-
-
-
-
 class QuizApp {
   constructor() {
-    this.showMessage("Retrieving the countries, this can take some time...", true);
+    this.showMessage(
+      'Retrieving the countries, this can take some time...',
+      true
+    );
     new Promise((resolve) => {
       setTimeout(() => {
         this._quiz = new Quiz();
@@ -71,12 +84,18 @@ class QuizApp {
         this.play();
       })
       .catch((wrong) => {
-        this.showMessage(`Something went wrong while retrieving the data: ${wrong}`,false);
+        this.showMessage(
+          `Something went wrong while retrieving the data: ${wrong}`,
+          false
+        );
       });
   }
   play() {
     new Promise((resolve) => {
-      this.showMessage("Creating the questions, this can take some time...",true);
+      this.showMessage(
+        'Creating the questions, this can take some time...',
+        true
+      );
       setTimeout(() => {
         this._quiz.createQuestions();
         resolve();
@@ -84,85 +103,101 @@ class QuizApp {
     })
       .then(() => {
         this.hideMessage();
-        document.getElementById("quiz").classList.remove('hide');
+        document.getElementById('quiz').classList.remove('hide');
         this.showQuestion(this._quiz.getQuestion());
       })
       .catch((wrong) => {
-        this.showMessage(`Something went wrong while creating the questions: ${wrong}`,false);
+        this.showMessage(
+          `Something went wrong while creating the questions: ${wrong}`,
+          false
+        );
       });
   }
   showQuestion(question) {
-    this.showMessage('Creating the list of possible answers, this can take some time...',true);
-    document.getElementById("country").innerHTML = question.countryName;
-    document.getElementById("answersList").classList.add('hide');
+    this.showMessage(
+      'Creating the list of possible answers, this can take some time...',
+      true
+    );
+    document.getElementById('country').innerHTML = question.countryName;
+    document.getElementById('answersList').classList.add('hide');
     new Promise((resolve) => {
       setTimeout(() => {
-        this.createSelectList(question.capital);
+        this.createSelectList(this._quiz.getAnswerSet(question));
         resolve();
-      }, 2000)
+      }, 2000);
     })
       .then(() => {
         this.hideMessage();
-        document.getElementById("answersList").classList.remove('hide');
-        document.getElementById("capital").onchange = () => {
-          this._quiz.addAnswer(question, document.getElementById("capital").value);
+        document.getElementById('answersList').classList.remove('hide');
+        document.getElementById('capital').onchange = () => {
+          this._quiz.addAnswer(
+            question,
+            document.getElementById('capital').value
+          );
           this.showResult();
-          this.showQuestion(this._quiz.getQuestion());
-        }
+          if (this._quiz.getQuestion())
+            this.showQuestion(this._quiz.getQuestion());
+          else {
+            document.getElementById('answersList').classList.add('hide');
+            document.querySelector(
+              '#quiz div'
+            ).innerHTML = `<div class="form-group"> Hope you enjoyed the quiz...</div>`;
+          }
+        };
       })
       .catch((wrong) => {
-        this.showMessage(`Something went wrong creating the answers list: ${wrong}`,false);
+        this.showMessage(
+          `Something went wrong creating the answers list: ${wrong}`,
+          false
+        );
       });
   }
-  
+
   showResult() {
-    document.getElementById("answers").innerHTML = "";
+    document.getElementById('answers').innerHTML = '';
     [...this._quiz.answers].forEach(([key, value]) => {
-      const tr = document.createElement("tr");
-      const td1 = document.createElement("td");
+      const tr = document.createElement('tr');
+      const td1 = document.createElement('td');
       td1.appendChild(document.createTextNode(key.countryName));
-      const td2 = document.createElement("td");
+      const td2 = document.createElement('td');
       td2.appendChild(document.createTextNode(key.capital));
-      const td3 = document.createElement("td");
+      const td3 = document.createElement('td');
       td3.appendChild(document.createTextNode(value));
-      const td4 = document.createElement("td");
-      const icon = document.createElement("img");
-      icon.src =
-        key.capital.toLowerCase() === value.toLowerCase()
-          ? "images/correct.png"
-          : "images/wrong.png";
-      icon.width = "25";
-      icon.height = "25";
+      const td4 = document.createElement('td');
+      const icon = document.createElement('img');
+      icon.src = this._quiz.isAnsweredCorrectly(key)
+        ? 'images/correct.png'
+        : 'images/wrong.png';
+      icon.width = '25';
+      icon.height = '25';
       td4.appendChild(icon);
       tr.appendChild(td1);
       tr.appendChild(td2);
       tr.appendChild(td3);
       tr.appendChild(td4);
-      document.getElementById("answers").appendChild(tr);
+      document.getElementById('answers').appendChild(tr);
     });
   }
-  createSelectList(c) {
-    document.getElementById("capital").innerHTML = "";
-    const capitalSet = new Set();
-    capitalSet.add("-- Make your choice --");
-    capitalSet.add(c);
-    while (capitalSet.size < 11) {
-      capitalSet.add(this._quiz.getRandomCountryCapital());
-    }
+  createSelectList(capitalSet) {
+    document.getElementById('capital').innerHTML = '';
+    capitalSet.add('-- Make your choice --');
     [...capitalSet].sort().forEach((value) => {
-      const opt = document.createElement("option");
+      const opt = document.createElement('option');
       opt.appendChild(document.createTextNode(value));
-      document.getElementById("capital").appendChild(opt);
+      document.getElementById('capital').appendChild(opt);
     });
   }
-  showMessage(message,spinner){
-    document.getElementById("message").classList.remove('hide');
-    !spinner ? document.getElementById("spinner").classList.add('hide') : document.getElementById("spinner").classList.remove('hide');
-    document.getElementById("messageText").innerText = message;
+
+  showMessage(message, spinner) {
+    document.getElementById('message').classList.remove('hide');
+    !spinner
+      ? document.getElementById('spinner').classList.add('hide')
+      : document.getElementById('spinner').classList.remove('hide');
+    document.getElementById('messageText').innerText = message;
   }
-  hideMessage(){
-    document.getElementById("message").classList.add('hide');
-    document.getElementById("messageText").innerText = '';
+  hideMessage() {
+    document.getElementById('message').classList.add('hide');
+    document.getElementById('messageText').innerText = '';
   }
 }
 window.onload = () => {
