@@ -34,6 +34,9 @@ class Quiz {
   get answers() {
     return this._answers;
   }
+  get end() {
+    return this._questions.size === this._answers.size;
+  }
   createQuestions() {
     while (this.questions.size < 10) {
       this.questions.add(
@@ -57,35 +60,43 @@ class Quiz {
 class QuizApp {
   constructor() {
     this.showMessage(
-      'Retrieving the countries, this can take some time...',
-      true
+      'Retrieving the countries, this can take some time...'
     );
-    new Promise((resolve) => {
+    new Promise((resolve, reject) => {
       setTimeout(() => {
-        this._quiz = new Quiz();
-        resolve();
+        try {
+          this._quiz = new Quiz()
+          resolve();
+        }
+        catch (error) {
+          reject(error);
+        };
       }, 10000);
     })
       .then(() => {
         this.hideMessage();
         this.play();
       })
-      .catch((wrong) => {
+      .catch((error) => {
         this.showMessage(
-          `Something went wrong while retrieving the data: ${wrong}`,
+          `Something went wrong while retrieving the data: ${error}`,
           false
         );
       });
   }
   play() {
-    new Promise((resolve) => {
-      this.showMessage(
-        'Creating the questions, this can take some time...',
-        true
-      );
+    this.showMessage(
+      'Creating the questions, this can take some time...'
+    );
+    new Promise((resolve, reject) => {
       setTimeout(() => {
-        this._quiz.createQuestions();
-        resolve();
+        try {
+          this._quiz.createQuestions();
+          resolve();
+        }
+        catch (error) {
+          reject(error)
+        };
       }, 10000);
     })
       .then(() => {
@@ -93,24 +104,28 @@ class QuizApp {
         document.getElementById('quiz').classList.remove('hide');
         this.showQuestion(this._quiz.getQuestion());
       })
-      .catch((wrong) => {
+      .catch((error) => {
         this.showMessage(
-          `Something went wrong while creating the questions: ${wrong}`,
+          `Something went wrong while creating the questions: ${error}`,
           false
         );
       });
   }
   showQuestion(question) {
     this.showMessage(
-      'Creating the list of possible answers, this can take some time...',
-      true
+      'Creating the list of possible answers, this can take some time...'
     );
     document.getElementById('country').innerHTML = question.countryName;
     document.getElementById('answersList').classList.add('hide');
     new Promise((resolve) => {
       setTimeout(() => {
-        this.createSelectList(question.capital);
-        resolve();
+        try {
+          this.createSelectList(question.capital);
+          resolve();
+        }
+        catch (error) {
+          reject(error);
+        };
       }, 2000);
     })
       .then(() => {
@@ -122,19 +137,19 @@ class QuizApp {
             document.getElementById('capital').value
           );
           this.showResult();
-          if (this._quiz.getQuestion())
+          if (!this._quiz.end)
             this.showQuestion(this._quiz.getQuestion());
           else {
             document.getElementById('answersList').classList.add('hide');
             document.querySelector(
               '#quiz div'
-            ).innerHTML = `<div class="form-group"> Hope you enjoyed the quiz...</div>`;
+            ).innerHTML = `<div class="form-group">This is the end. Hope you enjoyed the quiz...</div>`;
           }
         };
       })
-      .catch((wrong) => {
+      .catch((error) => {
         this.showMessage(
-          `Something went wrong creating the answers list: ${wrong}`,
+          `Something went wrong creating the answers list: ${error}`,
           false
         );
       });
@@ -181,7 +196,7 @@ class QuizApp {
     });
   }
 
-  showMessage(message, spinner) {
+  showMessage(message, spinner = true) {
     document.getElementById('message').classList.remove('hide');
     !spinner
       ? document.getElementById('spinner').classList.add('hide')
